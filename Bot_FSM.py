@@ -25,6 +25,12 @@ async def user_register(message: types.Message):
                          "Введите своё имя")
     await UserState.name.set()
 
+@dp.message_handler(text=['приветик'])
+async def user_register(message: types.Message):
+    await message.answer("Привет, лови пасхалку\n"
+                         "Регистрация!\n"
+                         "Введите своё имя")
+    await UserState.name.set()
 
 @dp.message_handler(state=UserState.name)
 async def get_username(message: types.Message, state: FSMContext):
