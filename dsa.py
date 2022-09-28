@@ -17,18 +17,20 @@ con = sl.connect('my-test.db')
 #     (3, 'Chris', 23)
 # ]
 
-def log_up(nick):
-    if nick
-
-
-
 
 
 # with con:
 #     con.executemany(sql, data)
-
+names = []
 with con:
-    data = con.execute("SELECT * FROM USER")
+    data = con.execute("SELECT name FROM USER")
+    print(data)
     for row in data:
-        print(row)
+        names += row
+print(names)
+
+def log_up(nickname):
+    if nickname in names:
+        x = 1
+
 
