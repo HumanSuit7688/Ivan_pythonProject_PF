@@ -32,5 +32,3 @@ print(names)
 def log_up(nickname):
     if nickname in names:
         x = 1
-
-
