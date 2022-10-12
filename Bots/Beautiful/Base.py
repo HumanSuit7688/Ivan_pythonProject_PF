@@ -1,8 +1,8 @@
 import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from config import TOKEN
-from back_end import register_handler_menu
+from Bots.config import TOKEN
+from Bots.Beautiful.back_end import register_handler_menu
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())

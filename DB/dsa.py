@@ -21,14 +21,5 @@ con = sl.connect('my-test.db')
 
 # with con:
 #     con.executemany(sql, data)
-names = []
-with con:
-    data = con.execute("SELECT name FROM USER")
-    print(data)
-    for row in data:
-        names += row
-print(names)
 
-def log_up(nickname):
-    if nickname in names:
-        x = 1
+sql = 'DELET USER'

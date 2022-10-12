@@ -40,3 +40,4 @@ inline_btn_vodka = InlineKeyboardButton('Водка', callback_data='button_drin
 inline_btn_vino = InlineKeyboardButton('Вино', callback_data='button_drink_alk_vino')
 inline_btn_shamp = InlineKeyboardButton('Шампанское', callback_data='button_drink_alk_shamp')
 inline_kb6.add(inline_btn_pivo, inline_btn_vodka, inline_btn_vino, inline_btn_shamp, inline_btn_back2)
+

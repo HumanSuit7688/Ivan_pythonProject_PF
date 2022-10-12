@@ -1,5 +1,5 @@
-from aiogram import Bot, Dispatcher, types
-from back_buttons import inline_kb1, inline_kb2, inline_kb3, inline_kb4, inline_kb5, inline_kb6, ReplyKeyboardRemove
+from aiogram import Dispatcher, types
+from Bots.Beautiful.back_buttons import inline_kb1, inline_kb2, inline_kb3, inline_kb4, inline_kb5, inline_kb6, ReplyKeyboardRemove
 
 async def handler_start(message: types.Message):
     await message.answer('Ну что ж, начнём!\nЧего же ты хочешь?...', reply_markup=inline_kb1)
