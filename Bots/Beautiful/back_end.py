@@ -6,6 +6,7 @@ async def handler_start(message: types.Message):
 
 
 async def handler_hello(message: types.Message):
+    message.id
     await message.answer('Hello there')
 
 
