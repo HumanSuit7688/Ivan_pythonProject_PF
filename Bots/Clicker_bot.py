@@ -15,30 +15,33 @@ inline_kb1 = InlineKeyboardMarkup()
 inline_btn_click = InlineKeyboardButton('Click!', callback_data='button_click')
 inline_kb1.row(inline_btn_click)
 
-x = 0
+clicks = 0
 @dp.message_handler(commands='start')
 async def clicker(msg: types.Message):
+    global clicks
     user_id = msg.from_user.id
     cur = con.cursor()
-    cur.execute("SELECT * FROM users WHERE id = ?", (msg.from_user.id,))
+    cur.execute("SELECT * FROM users WHERE id = ?", (user_id, ))
     row = cur.fetchall()
     if row:
-        print('Есть юзер')
-        # rows[1]+=1
-        # update
+        cur.execute("SELECT click_count FROM users WHERE id = ?", (user_id, ))
+        clicks = cur.fetchall()[0][0]
     else:
-        print('Нет ещё такого юзера')
-        # insert
-
-    print(row)
-    await msg.answer(f'Ваше количество кликов {x}', reply_markup=inline_kb1)
+        cur.execute("INSERT INTO users VALUES(?, ?)", (user_id, 0))
+        con.commit()
+    await msg.answer(f'Ваше количество кликов {clicks}', reply_markup=inline_kb1)
 
 @dp.callback_query_handler(lambda c: c.data == 'button_click')
 async def click(callback_query: types.CallbackQuery):
-    global x
+    user_id = callback_query.from_user.id
     await bot.answer_callback_query(callback_query.id)
-    x += 1
-    await bot.edit_message_text(f'Ваше количество кликов {x}',
+    cur = con.cursor()
+    cur.execute("SELECT click_count FROM users WHERE id = ?", (user_id, ))
+    clicks = cur.fetchall()[0][0]
+    clicks += 1
+    cur.execute("UPDATE users SET click_count = ? WHERE id = ?", (clicks, user_id,))
+    con.commit()
+    await bot.edit_message_text(f'Ваше количество кликов {clicks}',
                                 message_id = callback_query.message.message_id,
                                 chat_id= callback_query.message.chat.id,
                                 reply_markup=inline_kb1)
