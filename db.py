@@ -1,11 +1,13 @@
 import sqlite3 as sl
 con = sl.connect('my-test.db')
 
-# with con:
-#     con.execute("""
-#         ADD COLUMN INTO USERS
-#     """)
-
+with con:
+    con.execute("""
+        CREATE TABLE users (
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            click_count INTEGER
+        );
+    """)
 # sql = 'INSERT INTO USER (id, name, age) values(?, ?, ?)'
 # data = [
 #     (1, 'Alice', 21),
@@ -16,6 +18,4 @@ con = sl.connect('my-test.db')
 
 
 # with con:
-#     con.executemany(sql, data)
-
-sql = 'DELET USER'
+#     con.executemany(sql, data)'
