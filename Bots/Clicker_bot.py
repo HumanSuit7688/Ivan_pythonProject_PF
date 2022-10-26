@@ -1,7 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import ReplyKeyboardRemove, \
-    ReplyKeyboardMarkup, KeyboardButton, \
-    InlineKeyboardMarkup, InlineKeyboardButton
+    ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils import executor
 from Bots.config import TOKEN
 
