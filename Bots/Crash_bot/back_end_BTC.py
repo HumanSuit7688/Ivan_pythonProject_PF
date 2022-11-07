@@ -1,28 +1,22 @@
-import time
+import asyncio
 from pycoingecko import CoinGeckoAPI
 from aiogram.types import ReplyKeyboardRemove, \
     InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 
 cg = CoinGeckoAPI()
 
-def crypto_crash(id, stv):
-    crypto = cg.get_price(ids=id, vs_currencies='usd')
-    price = crypto[id]['usd']
-    prc_for_comp = price * 100
-
-    time.sleep(35)
-
+def crypto_crash(id, stv, price):
     crypto2 = cg.get_price(ids=id, vs_currencies='usd')
     price2 = crypto2[id]['usd']
     prc_for_comp2 = price2 * 100
 
     if "больше" in stv:
-        if prc_for_comp2 > prc_for_comp:
+        if price2 > price:
             result = 'Ура, вы выиграли!'
         else:
             result = 'К сожалению вы проиграли!'
     elif 'меньше' in stv:
-        if prc_for_comp2 < prc_for_comp:
+        if price2 < price:
             result = 'Ура, вы выиграли!'
         else:
             result = 'К сожалению вы проиграли!'
