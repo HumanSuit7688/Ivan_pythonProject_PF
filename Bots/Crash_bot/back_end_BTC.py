@@ -13,7 +13,8 @@ def crypto_crash(id, stv, price, stv_int):
         else:
             result = 'К сожалению вы проиграли!'
             stv_int = 0
-    elif 'меньше' in stv:
+    elif 'меньше' \
+         '' in stv:
         if price2 < price:
             result = 'Ура, вы выиграли!'
             stv_int = stv_int * 2
