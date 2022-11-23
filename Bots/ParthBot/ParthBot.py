@@ -9,7 +9,9 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def process_news(message: types.Message):
     news = random_news()
-    await message.answer(f'{news[1]}\n{news[0]}\n{news[3]}', reply_markup=scroll)
+    await message.answer_photo(photo=news[1],
+                               caption='f'
+                               , reply_markup=scroll)
 
 
 @dp.callback_query_handler(lambda c: c.data == 'button_next_scr')
