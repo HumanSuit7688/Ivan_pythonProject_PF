@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import random
+from aiogram.types import ReplyKeyboardRemove, \
+    ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 
 
 def random_news():
@@ -27,3 +29,9 @@ def random_news():
 
 func = random_news()
 print(func)
+
+
+scroll = InlineKeyboardMarkup()
+next_button = InlineKeyboardButton('Next>>>', callback_data='button_next_scr')
+previous_button = InlineKeyboardButton('<<<Previous', callback_data='button_prev_scr')
+scroll.add(previous_button, next_button)
