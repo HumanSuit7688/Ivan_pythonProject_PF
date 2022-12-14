@@ -1,44 +1,14 @@
 import flet as ft
 from calc_backup import numb
 
-# def hard_main(page: ft.Page):
-#     page.window_width = 800
-#     page.window_height = 500
-#     def add_clicked(e):
-#         tasks_view.controls.append(ft.Checkbox(label=new_task.value))
-#         new_task.value = ""
-#         view.update()
-#
-#     new_task = ft.TextField(hint_text="Whats needs to be done?", expand=True)
-#     tasks_view = ft.Column()
-#     view=ft.Column(
-#         width=600,
-#         controls=[
-#             ft.Row(
-#                 height=400,
-#                 controls=[
-#                     new_task,
-#                     ft.FloatingActionButton(icon=ft.icons.ADD, on_click=add_clicked, autofocus=True),
-#                 ],
-#             ),
-#             tasks_view,
-#         ],
-#     )
-#
-#     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-#     page.add(view)
-#
-#
-# ft.app(target=hard_main)
-
 
 def calcul(page: ft.Page):
     page.window_width = 350
     page.window_height = 475
-    page.title = 'Calcul'
+    page.title = 'Calculator'
     result = ft.Text(value = '0')
     def number(e):
-        if e.control.data == ',':
+        if e.control.data == '.':
             result.value += str(e.control.data)
         elif result.value == '0':
             result.value = str(e.control.data)
@@ -56,6 +26,27 @@ def calcul(page: ft.Page):
         page.update()
 
     def enter(e):
+        in1 = result.value.find(' ')
+        n1 = result.value[0:in1]
+        print(n1)
+        n2 = result.value[in1+3:]
+        print(n2)
+        mark = result.value[in1+1]
+        print(mark)
+        if mark == '+':
+            res = float(n1) + float(n2)
+            print(res)
+            result.value = str(res)
+        elif mark == '-':
+            res = float(n1) - float(n2)
+            result.value = str(res)
+        elif mark == '/':
+            res = float(n1) / float(n2)
+            result.value = str(res)
+        elif mark == '*':
+            res = float(n1) * float(n2)
+            result.value = str(res)
+        page.update()
 
     row1 = ft.Column(
         controls=[
@@ -111,7 +102,7 @@ def calcul(page: ft.Page):
             ft.Row(
                 controls=[
                     ft.ElevatedButton(text='0', on_click=number, data='0'),
-                    ft.ElevatedButton(text=',', on_click=number, data=','),
+                    ft.ElevatedButton(text='.', on_click=number, data='.'),
                     ft.ElevatedButton(text='+', on_click=m_function, data='+'),
                     ft.ElevatedButton(text='Enter', on_click=enter)
                 ]
