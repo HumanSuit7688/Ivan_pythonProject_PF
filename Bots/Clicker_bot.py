@@ -28,7 +28,7 @@ async def clicker(msg: types.Message):
     else:
         cur.execute("INSERT INTO users VALUES(?, ?)", (user_id, 0))
         con.commit()
-    await msg.answer(f'Ваше количество кликов {clicks}', reply_markup=inline_kb1)
+    msg = await msg.answer(f'Ваше количество кликов {clicks}', reply_markup=inline_kb1)
 
 @dp.callback_query_handler(lambda c: c.data == 'button_click')
 async def click(callback_query: types.CallbackQuery):

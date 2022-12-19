@@ -1,5 +1,4 @@
 import flet as ft
-from calc_backup import numb
 
 
 def calcul(page: ft.Page):
