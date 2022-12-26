@@ -43,7 +43,7 @@ async def check_polling(message: types.Message):
     big_var = polling.options[ind_max_vot].text
     tot_voit = polling.total_voter_count
     big_var_c = max_vot
-    await message.answer(f'Всего голосов - {tot_voit}\nБольше всего голосов набрал вариант - "{big_var}" {big_var_c}- голосов')
+    await message.answer(f'Всего голосов - {tot_voit}\nБольше всего голосов набрал вариант - "{big_var}" {big_var_c} голосов')
     print(polling)
 
 
