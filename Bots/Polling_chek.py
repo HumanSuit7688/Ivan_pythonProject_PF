@@ -38,20 +38,11 @@ async def check_polling(message: types.Message):
     for u in polling.options, range(len(polling.options)):
         vot_counts.append(polling.options[x].voter_count)
         x += 1
-    big = 0
-    var_count = 0
-    for i in vot_counts:
-        big = i
-        if i > big:
-            big = i
-            var_count = x
-        else:
-            pass
-        x += 1
-
-    big_var = polling.options[var_count].text
+    max_vot = max(vot_counts)
+    ind_max_vot = vot_counts.index(max_vot)
+    big_var = polling.options[ind_max_vot].text
     tot_voit = polling.total_voter_count
-    big_var_c = polling.options[var_count].voter_count
+    big_var_c = max_vot
     await message.answer(f'Всего голосов - {tot_voit}\nБольше всего голосов набрал вариант - "{big_var}" {big_var_c}- голосов')
     print(polling)
 
